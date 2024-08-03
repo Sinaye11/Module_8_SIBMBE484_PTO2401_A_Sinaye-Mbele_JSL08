@@ -1,38 +1,35 @@
 // This one will be a little tricky. So check out this overview first: https://www.youtube.com/watch?v=sJ-c3BA-Ypo
 
-// 1. Create a variable to store the singleton instance of the bank branch. "bankBranchInstance"
+// Singleton instance of the bank branch
 let bankBranchInstance = null;
 
-// 2. Define a class called `BankBranch` for managing branch information.
-class BankBranch{
-    //    - Create a constructor that takes `branchInfo` as a parameter.
-    constructor(bankInfo) {
-        // 3. In the `BankBranch` class:
-//    - Inside the constructor, check if the `bankBranchInstance` variable is null (indicating no instance exists).
-        if (!bankBranchInstance){
-            //    - If `bankBranchInstance` is null, create a new instance with the provided `branchInfo` and assign it to `bankBranchInstance`.
+// Define the BankBranch class
+class BankBranch {
+    // Constructor taking branchInfo as a parameter
+    constructor(branchInfo) {
+        // Check if the singleton instance already exists
+        if (!bankBranchInstance) {
+            // If not, initialize the instance and assign branchInfo
             bankBranchInstance = this;
-            //Assign branch information
-            this.bankInfo = bankInfo;
+            this.branchInfo = branchInfo;
         }
-     //    - Return the `bankBranchInstance` whether it's newly created or existing.
+        // Return the existing singleton instance
         return bankBranchInstance;
     }
-    // 4. Add methods to the `BankBranch` class for managing branch-related information.
-    getBranchInfo(){
-        return this.getBranchInfo;
-    } 
 
+    // Method to get branch information
+    getBranchInfo() {
+        return this.branchInfo;
+    }
 }
-// 5. In the usage section:
-//    - Create instances of the `BankBranch` class, such as `branchA` and `branchB`, with different branch information.
+
+// Create instances of the BankBranch class
 const branchA = new BankBranch("Branch A: Location: Durban");
 const branchB = new BankBranch("Branch B: Location: Pretoria");
 
-//Retrieving branch details
-console.log(branchA.getBranchInfo());
-console.log(branchB.getBranchInfo());
+// Retrieve branch details
+console.log(branchA.getBranchInfo()); // Should print "Branch A: Location: Durban"
+console.log(branchB.getBranchInfo()); // Should print "Branch A: Location: Durban"
 
-//    - Verify that `branchA` and `branchB` are both referring to the same instance by comparing them using `===`.
-console.log(branchA === branchB);
-
+// Verify that branchA and branchB are the same instance
+console.log(branchA === branchB); // Should print true
